@@ -7,6 +7,15 @@ public class Event
     [JsonPropertyName("startTime")]
     public DateTime StartTime { get; set; }
 
+    public DateTime StartTimeBr
+    {
+        get
+        {
+            var brTz = TimeZoneInfo.FindSystemTimeZoneById("America/Sao_Paulo");
+            return TimeZoneInfo.ConvertTime(StartTime, brTz);
+        }
+    }
+
     [JsonPropertyName("state")]
     public string State { get; set; } = null!;
 

@@ -22,6 +22,12 @@ public class Function
         _lolEsportsService = lolEsportsService;
     }
 
+    public static DateTime GetDateTimeNowBr()
+    {
+        var brTz = TimeZoneInfo.FindSystemTimeZoneById("America/Sao_Paulo");
+        return TimeZoneInfo.ConvertTime(DateTime.Now, brTz);
+    }
+
     public async Task<SkillResponse> FunctionHandlerAsync(SkillRequest request/*, ILambdaContext context*/)
     {
         return request.Request switch
@@ -38,8 +44,8 @@ public class Function
         var events = response.Events;
 
         var nextGame = events
-                            .Where(x => x.StartTime >= DateTime.Now)
-                            .OrderBy(x => x.StartTime)
+                            .Where(x => x.StartTimeBr >= GetDateTimeNowBr())
+                            .OrderBy(x => x.StartTimeBr)
                             .FirstOrDefault();
 
         if (nextGame == null)
@@ -49,8 +55,8 @@ public class Function
 
         var teams = nextGame.Match.Teams;
 
-        return nextGame.StartTime.Date == DateTime.Now.Date
-            ? ResponseBuilder.Tell(TextFormatter.FormatGameDay(teams[0].Name, teams[1].Name, nextGame.StartTime))
-            : ResponseBuilder.Tell(TextFormatter.TodayHasNoGame(teams[0].Name, teams[1].Name, nextGame.StartTime));
+        return nextGame.StartTimeBr.Date == GetDateTimeNowBr().Date
+            ? ResponseBuilder.Tell(TextFormatter.FormatGameDay(teams[0].Name, teams[1].Name, nextGame.StartTimeBr))
+            : ResponseBuilder.Tell(TextFormatter.TodayHasNoGame(teams[0].Name, teams[1].Name, nextGame.StartTimeBr));
     }
 }
