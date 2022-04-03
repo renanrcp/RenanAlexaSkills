@@ -2,7 +2,7 @@ using LolEsportsSkill.Models;
 
 namespace LolEsportsSkill;
 
-public interface ILolEsportsService
+public interface ILolEsportsService : IDisposable
 {
     Task<Schedule> GetScheduleAsync(string? pageToken);
 }

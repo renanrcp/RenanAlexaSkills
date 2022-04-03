@@ -14,8 +14,8 @@ public class Team
     public string Image { get; set; } = null!;
 
     [JsonPropertyName("result")]
-    public Result Result { get; set; } = null!;
+    public Result? Result { get; set; }
 
     [JsonPropertyName("record")]
-    public Record Record { get; set; } = null!;
+    public Record? Record { get; set; }
 }
