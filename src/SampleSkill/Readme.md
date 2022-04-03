@@ -6,7 +6,7 @@ This starter project consists of:
 
 You may also have a test project depending on the options selected.
 
-The generated function handler is a simple method accepting a string argument that returns the uppercase equivalent of the input string. Replace the body of this method, and parameters, to suit your needs. 
+The generated function handler is a simple method accepting a string argument that returns the uppercase equivalent of the input string. Replace the body of this method, and parameters, to suit your needs.
 
 ## Here are some steps to follow from Visual Studio:
 
@@ -38,12 +38,12 @@ If already installed check if new version is available.
 
 Execute unit tests
 ```
-    cd "RenanAlexaSkills/test/RenanAlexaSkills.Tests"
+    cd "SampleSkill/test/SampleSkill.Tests"
     dotnet test
 ```
 
 Deploy function to AWS Lambda
 ```
-    cd "RenanAlexaSkills/src/RenanAlexaSkills"
+    cd "SampleSkill/src/SampleSkill"
     dotnet lambda deploy-function
 ```
