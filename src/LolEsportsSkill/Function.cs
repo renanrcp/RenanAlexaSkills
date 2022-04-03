@@ -38,7 +38,7 @@ public class Function
         var events = response.Events;
 
         var nextGame = events
-                            .Where(x => x.StartTime.Date >= DateTime.Now.Date)
+                            .Where(x => x.StartTime >= DateTime.Now)
                             .OrderBy(x => x.StartTime)
                             .FirstOrDefault();
 

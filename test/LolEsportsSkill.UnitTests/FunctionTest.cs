@@ -22,7 +22,7 @@ public class FunctionTest
                 {
                     new()
                     {
-                        StartTime = DateTime.Now,
+                        StartTime = DateTime.Now.Date.AddDays(1).AddTicks(-1),
                         Match = new()
                         {
                             Teams = new()
@@ -55,7 +55,7 @@ public class FunctionTest
 
         // Assert
         var plainTextOutputSpeechResult = Assert.IsType<PlainTextOutputSpeech>(response.Response.OutputSpeech);
-        Assert.Equal(TextFormatter.FormatGameDay("Team A", "Team B", DateTime.Now), plainTextOutputSpeechResult.Text);
+        Assert.Equal(TextFormatter.FormatGameDay("Team A", "Team B", DateTime.Now.Date.AddDays(1).AddTicks(-1)), plainTextOutputSpeechResult.Text);
     }
 
     [Fact]
