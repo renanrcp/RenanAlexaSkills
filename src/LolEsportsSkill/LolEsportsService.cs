@@ -33,7 +33,7 @@ public class LolEsportsService : ILolEsportsService
         return httpClient;
     }
 
-    public async Task<Schedule> GetScheduleAsync(string? pageToken)
+    public async Task<Schedule> GetScheduleAsync(string? pageToken = null)
     {
         var requestUri = $"getSchedule?hl={DEFAULT_HL}&leagueId={DEFAULT_LEAGUE_ID}";
 
