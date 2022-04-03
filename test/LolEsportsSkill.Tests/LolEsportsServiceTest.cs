@@ -14,12 +14,38 @@ public class LolEsportsServiceTest : IClassFixture<LolEsportsServiceFixture>
     [Fact]
     public async Task GetScheduleAsyncReturnsSchedule()
     {
+        // Act
         var lolEsportsService = _lolEsportsServiceFixture.LolEsportsService;
 
+        // Arrange
         var schedule = await lolEsportsService.GetScheduleAsync(null);
 
+        // Assert
         Assert.NotNull(schedule);
         Assert.NotEmpty(schedule.Events);
+    }
+
+    [Fact]
+    public async Task GetScheduleAsyncReturnsMoreOlderSchedulesWithPage()
+    {
+        // Act
+        var lolEsportsService = _lolEsportsServiceFixture.LolEsportsService;
+
+        // Arrange
+        var firstSchedule = await lolEsportsService.GetScheduleAsync(null);
+
+        // This can occurs if doesnt has previous games in the tournament.
+        if (string.IsNullOrWhiteSpace(firstSchedule.Pages.Older))
+        {
+            return;
+        }
+
+        var secondSchedule = await lolEsportsService.GetScheduleAsync(firstSchedule.Pages.Older);
+
+        // Assert
+        Assert.NotNull(secondSchedule);
+        Assert.NotEmpty(secondSchedule.Events);
+        Assert.NotEqual(firstSchedule.Events, secondSchedule.Events);
     }
 }
 
