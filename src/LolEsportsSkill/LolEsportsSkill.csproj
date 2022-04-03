@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="LolEsportsSkill.Tests" />
+    <InternalsVisibleTo Include="LolEsportsSkill.UnitTests" />
+    <InternalsVisibleTo Include="LolEsportsSkill.IntegrationTests" />
   </ItemGroup>
 </Project>

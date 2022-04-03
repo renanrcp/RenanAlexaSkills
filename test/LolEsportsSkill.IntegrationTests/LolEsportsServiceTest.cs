@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace LolEsportsSkill.Tests;
+namespace LolEsportsSkill.IntegrationTests;
 
 public class LolEsportsServiceTest : IClassFixture<LolEsportsServiceFixture>
 {
